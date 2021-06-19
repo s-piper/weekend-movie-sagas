@@ -13,8 +13,16 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
-    const handleClick = () => {
-        history.push('/details')
+
+    //pushes to details page and makes GET request for movie details
+    //SELECTED_POSTER contains clicked img url
+    const handleClick = (event) => {
+        console.log('clicked movie', event);
+
+        dispatch({type:'GET_DETAILS', payload: event.id });
+        dispatch({type:'SELECTED_POSTER', payload: event.poster});
+    //pushes to detail page
+        history.push('/details',)
     }
 
     return (
@@ -25,7 +33,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title} onClick={handleClick}/>
+                            <img src={movie.poster} alt={movie.title}  onClick={event => handleClick(movie)}/>
                         </div>
                     );
                 })}

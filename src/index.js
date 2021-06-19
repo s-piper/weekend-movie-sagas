@@ -14,6 +14,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('GET_DETAILS', fetchGenres);
+
 }
 
 function* fetchAllMovies() {
@@ -29,13 +31,28 @@ function* fetchAllMovies() {
         
 }
 
+function* fetchGenres (action) {
+    try{
+        console.log('fetchGenres Payload:', action.payload);
+        
+        const genres = yield axios.get(`/api/genre/:${action.payload}`);
+            console.log('get genres:', genres.data);
+        yield put({type: 'SET_GENRES', payload: genres.data});
+    } catch {
+        console.log('get genres error');
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server
+// SELECTED_POSTER case changes state to post image url
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
+            return action.payload;
+        case 'SELECTED_POSTER':
             return action.payload;
         default:
             return state;
