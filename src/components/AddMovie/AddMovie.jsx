@@ -8,7 +8,7 @@ function AddMovie (){
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
     const [desc, setDesc] = useState('');
-   
+    const [genre, setGenre] = useState(0);
 
     const handleSave = () =>{
 
@@ -32,7 +32,7 @@ function AddMovie (){
                 required
                 placeholder="Description" 
                 onChange={(event) => setDesc(event.target.value)}/>
-                <select>
+                <select onChange={(event) => setGenre(event.target.value)}>
                     <option id="default">Select Genre</option>
                     <option id="Adventure" value="1">Adventure</option>
                     <option id="Animated" value="2">Animated</option>
