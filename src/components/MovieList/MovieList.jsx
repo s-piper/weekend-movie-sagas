@@ -11,9 +11,9 @@ function MovieList() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
-    }, []);
+    },[]);
 
-
+    
     //pushes to details page and makes GET request for movie details
     //SELECTED_POSTER contains clicked img url
     const handleClick = (event) => {

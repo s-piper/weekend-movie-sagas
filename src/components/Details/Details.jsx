@@ -1,41 +1,50 @@
 import { Container } from '@material-ui/core';
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux'
-import {useHistory} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 
-function Details(){
+function Details() {
 
     const movieInfo = useSelector(store => store.movies);
     const movieGenres = useSelector(store => store.genres)
     const history = useHistory();
+    
 
     useEffect(() => {
         console.log('Details', movieInfo);;
     }, []);
 
-    const goBack = () =>{
-        history.push('./')
+    const goBack = () => {
+        history.push('./');
     }
 
     console.log('Genres', movieGenres);
-    
 
-    return(
+
+    return (
         <div>
             <h3> Movie Details</h3>
-
-            <button onClick={goBack}>Movie List</button>
-
+            <div className="poster">
+            {/* maps out the returned genres from DB */}
             <img src={movieInfo.poster} />
-            <div>
+            </div>
+
+            <button onClick={goBack}>Back to List</button>
+            <div className="genre">
                 <h4>Genres</h4>
-                    {movieGenres.map((item, i)=> {
-                        return(
-                            <p key={i}>{item.name}</p>
+                <p>
+                    {movieGenres.map((item, i) => {
+                        return (
+                            <span key={i}>-{item.name}-</span>
                         )
                     })}
+                </p>
+            </div >
+            <div className="description">
+                <h4>Description</h4>
+                <p>{movieInfo.desc}</p>
             </div>
-        </div>
+        </div >
     )
 }
 
