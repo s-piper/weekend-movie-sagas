@@ -19,8 +19,10 @@ function MovieList() {
     const handleClick = (event) => {
         console.log('clicked movie', event);
 
+        const movieInfo = {poster: event.poster, desc: event.description}
+
         dispatch({type:'GET_DETAILS', payload: event.id });
-        dispatch({type:'SELECTED_POSTER', payload: event.poster});
+        dispatch({type:'SELECTED_POSTER', payload: movieInfo});
     //pushes to detail page
         history.push('/details',)
     }

@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+//passes movie id in and uses associative table to link genres/movies
+//returns the genres the movie fits into
 router.get('/:id', (req, res) => {
   let id = [req.params.id];
   console.log('req.params.id:', id);
