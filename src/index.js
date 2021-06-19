@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('GET_DETAILS', fetchGenres);
+    yield takeEvery('ADD_MOVIE', addMovie)
 
 }
 
@@ -39,6 +40,16 @@ function* fetchGenres (action) {
         yield put({type: 'SET_GENRES', payload: genres.data});
     } catch {
         console.log('get genres error');
+    }
+}
+
+function* addMovie (action) {
+    try{
+        console.log('new movie', action.payload);
+        
+    } catch {
+        console.log('addMovie error');
+        
     }
 }
 

@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
 function AddMovie (){
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
-    const [title, setTitle] = useState('');
+    const [newTitle, setNewTitle] = useState('');
     const [url, setUrl] = useState('');
     const [desc, setDesc] = useState('');
     const [genre, setGenre] = useState(0);
 
     const handleSave = () =>{
 
+        const newMovie ={
+            title: newTitle,
+            poster: url,
+            description: desc,
+            genre_id: genre
+        }
 
+        dispatch({type:'ADD_MOVIE', payload: newMovie});
     }
 
     return(
@@ -23,7 +32,7 @@ function AddMovie (){
                 <input
                 required
                 placeholder="Movie Title"
-                onChange={(event) => setTitle(event.target.value)}/>
+                onChange={(event) => setNewTitle(event.target.value)}/>
                 <input
                 required
                 placeholder="Poster URL" 
@@ -53,7 +62,9 @@ function AddMovie (){
                 <button onClick={()=> history.push('./')}>
                     Cancel
                 </button>
-                <button onClick={handleSave}>Save</button>
+                <button onClick={handleSave}>
+                    Save
+                </button>
             </div>
 
         </div>
