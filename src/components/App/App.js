@@ -12,10 +12,10 @@ function App() {
         <Route path="/" exact>
           <MovieList />
         </Route>       
-        <Route path="/details" exact>
+        <Route path="/details">
           <Details />
         </Route>
-        <Route path="/movie" exact>
+        <Route path="/movie">
           <AddMovie />
         </Route>
       </Router>
