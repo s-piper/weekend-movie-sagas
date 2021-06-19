@@ -1,4 +1,19 @@
+import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom'
+
 function AddMovie (){
+
+    const history = useHistory();
+
+    const [title, setTitle] = useState('');
+    const [url, setUrl] = useState('');
+    const [desc, setDesc] = useState('');
+   
+
+    const handleSave = () =>{
+
+
+    }
 
     return(
 
@@ -7,13 +22,16 @@ function AddMovie (){
             <form>
                 <input
                 required
-                placeholder="Movie Title" />
+                placeholder="Movie Title"
+                onChange={(event) => setTitle(event.target.value)}/>
                 <input
                 required
-                placeholder="Poster URL" />
+                placeholder="Poster URL" 
+                onChange={(event) => setUrl(event.target.value)}/>
                 <input
                 required
-                placeholder="Description" />
+                placeholder="Description" 
+                onChange={(event) => setDesc(event.target.value)}/>
                 <select>
                     <option id="default">Select Genre</option>
                     <option id="Adventure" value="1">Adventure</option>
@@ -31,6 +49,12 @@ function AddMovie (){
                     <option id="Superhero" value="13">Superhero</option>
                 </select>
             </form>
+            <div>
+                <button onClick={()=> history.push('./')}>
+                    Cancel
+                </button>
+                <button onClick={handleSave}>Save</button>
+            </div>
 
         </div>
     )
