@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
-function AddMovie (){
+
+function AddMovie() {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -13,37 +16,37 @@ function AddMovie (){
     const [desc, setDesc] = useState('');
     const [genre, setGenre] = useState(0);
 
-    const handleSave = () =>{
+    const handleSave = () => {
         //Consolidates input data into object headed to router
-        const newMovie ={
+        const newMovie = {
             title: newTitle,
             poster: url,
             description: desc,
             genre_id: genre
         }
         //Sends object to router
-        dispatch({type:'ADD_MOVIE', payload: newMovie});
+        dispatch({ type: 'ADD_MOVIE', payload: newMovie });
         //Returns users to MovieList
         history.push('/');
     }
 
-    return(
+    return (
 
         <div>
             <h2>Add a Movie</h2>
             <form>
                 <input
-                required
-                placeholder="Movie Title"
-                onChange={(event) => setNewTitle(event.target.value)}/>
+                    required
+                    placeholder="Movie Title"
+                    onChange={(event) => setNewTitle(event.target.value)} />
                 <input
-                required
-                placeholder="Poster URL" 
-                onChange={(event) => setUrl(event.target.value)}/>
+                    required
+                    placeholder="Poster URL"
+                    onChange={(event) => setUrl(event.target.value)} />
                 <input
-                required
-                placeholder="Description" 
-                onChange={(event) => setDesc(event.target.value)}/>
+                    required
+                    placeholder="Description"
+                    onChange={(event) => setDesc(event.target.value)} />
                 <select onChange={(event) => setGenre(event.target.value)}>
                     <option id="default">Select Genre</option>
                     <option id="Adventure" value="1">Adventure</option>
@@ -62,12 +65,18 @@ function AddMovie (){
                 </select>
             </form>
             <div>
-                <button onClick={()=> history.push('./')}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => history.push('./')}>
                     Cancel
-                </button>
-                <button onClick={handleSave}>
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSave}>
                     Save
-                </button>
+                </Button>
             </div>
 
         </div>
