@@ -20,7 +20,7 @@ function* rootSaga() {
 }
 
 function* fetchAllMovies() {
-    // get all movies from the DB
+    // Gets all movies from the DB
     try {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
@@ -31,7 +31,7 @@ function* fetchAllMovies() {
     }
         
 }
-
+//Sends the selected movies Id to router and sends genre info to genres reducer
 function* fetchGenres (action) {
     try{
         console.log('fetchGenres Payload:', action.payload);
@@ -42,11 +42,12 @@ function* fetchGenres (action) {
         console.log('get genres error');
     }
 }
-
+//Sends the object from /movie and refreshes movies state
 function* addMovie (action) {
     try{
         console.log('new movie', action.payload);
         const response = yield axios.post(`api/movie`, action.payload);
+        yield put({type: 'FETCH_MOVIES'})
     } catch {
         console.log('addMovie error');
         
@@ -62,11 +63,19 @@ const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
+        default:
+            return state;
+    }
+}
+//Holds poster url and description user selected
+const selectedPoster = ( state = [], action) => {
+    switch (action.type) {
         case 'SELECTED_POSTER':
             return action.payload;
         default:
             return state;
     }
+
 }
 
 // Used to store the movie genres
@@ -84,6 +93,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        selectedPoster,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

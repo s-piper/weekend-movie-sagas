@@ -7,21 +7,24 @@ function AddMovie (){
     const history = useHistory();
     const dispatch = useDispatch();
 
+    //Grabs values from inputs
     const [newTitle, setNewTitle] = useState('');
     const [url, setUrl] = useState('');
     const [desc, setDesc] = useState('');
     const [genre, setGenre] = useState(0);
 
     const handleSave = () =>{
-
+        //Consolidates input data into object headed to router
         const newMovie ={
             title: newTitle,
             poster: url,
             description: desc,
             genre_id: genre
         }
-
+        //Sends object to router
         dispatch({type:'ADD_MOVIE', payload: newMovie});
+        //Returns users to MovieList
+        history.push('/');
     }
 
     return(

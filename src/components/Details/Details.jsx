@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 function Details() {
 
-    const movieInfo = useSelector(store => store.movies);
+    const movieInfo = useSelector(store => store.selectedPoster);
     const movieGenres = useSelector(store => store.genres)
     const history = useHistory();
     

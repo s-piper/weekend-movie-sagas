@@ -14,7 +14,7 @@ function MovieList() {
     },[]);
 
     
-    //pushes to details page and makes GET request for movie details
+    //Pushes to details page and makes GET request for movie details
     //SELECTED_POSTER contains clicked img url
     const handleClick = (event) => {
         console.log('clicked movie', event);
@@ -23,7 +23,7 @@ function MovieList() {
 
         dispatch({type:'GET_DETAILS', payload: event.id });
         dispatch({type:'SELECTED_POSTER', payload: movieInfo});
-    //pushes to detail page
+    //Pushes to detail page
         history.push('/details',)
     }
 
