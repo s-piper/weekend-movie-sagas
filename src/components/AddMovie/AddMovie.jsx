@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+
 
 
 function AddMovie() {
@@ -34,36 +38,43 @@ function AddMovie() {
 
         <div>
             <h2>Add a Movie</h2>
-            <form>
-                <input
+            <FormControl>
+                <TextField
                     required
-                    placeholder="Movie Title"
-                    onChange={(event) => setNewTitle(event.target.value)} />
-                <input
+                    onChange={(event) => setNewTitle(event.target.value)}
+                    id="standard-basic"
+                    label="Movie Title" />
+                <TextField
                     required
-                    placeholder="Poster URL"
-                    onChange={(event) => setUrl(event.target.value)} />
-                <input
+                    onChange={(event) => setUrl(event.target.value)}
+                    id="standard-basic"
+                    label="Poster URL" />
+                <TextField
                     required
-                    placeholder="Description"
-                    onChange={(event) => setDesc(event.target.value)} />
-                <select onChange={(event) => setGenre(event.target.value)}>
-                    <option id="default">Select Genre</option>
-                    <option id="Adventure" value="1">Adventure</option>
-                    <option id="Animated" value="2">Animated</option>
-                    <option id="Biographical" value="3">Biographical</option>
-                    <option id="Comedy" value="4">Comedy</option>
-                    <option id="Disaster" value="5">Disaster</option>
-                    <option id="Drama" value="6">Drama</option>
-                    <option id="Epic" value="7">Epic</option>
-                    <option id="Fantasy" value="8">Fantasy</option>
-                    <option id="Musical" value="9">Musical</option>
-                    <option id="Romantic" value="10">Romantic</option>
-                    <option id="Science Fiction" value="11">Science Fiction</option>
-                    <option id="Space-Opera" value="12">Space-Opera</option>
-                    <option id="Superhero" value="13">Superhero</option>
-                </select>
-            </form>
+                    onChange={(event) => setDesc(event.target.value)}
+                    id="standard-basic"
+                    label="Description" />
+
+                <Select onChange={(event) => setGenre(event.target.value)}>
+
+                    <MenuItem id="Adventure" value="1">Adventure</MenuItem>
+                    <MenuItem id="Animated" value="2">Animated</MenuItem>
+                    <MenuItem id="Biographical" value="3">Biographical</MenuItem>
+                    <MenuItem id="Comedy" value="4">Comedy</MenuItem>
+                    <MenuItem id="Disaster" value="5">Disaster</MenuItem>
+                    <MenuItem id="Drama" value="6">Drama</MenuItem>
+                    <MenuItem id="Epic" value="7">Epic</MenuItem>
+                    <MenuItem id="Fantasy" value="8">Fantasy</MenuItem>
+                    <MenuItem id="Musical" value="9">Musical</MenuItem>
+                    <MenuItem id="Romantic" value="10">Romantic</MenuItem>
+                    <MenuItem id="Science Fiction" value="11">Science Fiction</MenuItem>
+                    <MenuItem id="Space-Opera" value="12">Space-Opera</MenuItem>
+                    <MenuItem id="Superhero" value="13">Superhero</MenuItem>
+                </Select>
+            </FormControl>
+            <div>
+                <h1></h1>
+            </div>
             <div>
                 <Button
                     variant="contained"
