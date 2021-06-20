@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
 
 function Details() {
 
@@ -22,13 +24,14 @@ function Details() {
 
     return (
         <div>
-            <h3> Movie Details</h3>
+            <h2> Movie Details</h2>
             <div className="poster">
             {/* maps out the returned genres from DB */}
             <img src={movieInfo.poster} width="185" height="274" />
             </div>
 
-            <button onClick={goBack}>Back to List</button>
+            <Button variant="contained" color="primary" onClick={goBack}>Back to List</Button>
+            
             <div className="genre">
                 <h4>Genres</h4>
                 <p>

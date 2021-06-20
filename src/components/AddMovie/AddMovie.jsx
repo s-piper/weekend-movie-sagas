@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 
-function AddMovie (){
+
+
+function AddMovie() {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -13,61 +20,74 @@ function AddMovie (){
     const [desc, setDesc] = useState('');
     const [genre, setGenre] = useState(0);
 
-    const handleSave = () =>{
+    const handleSave = () => {
         //Consolidates input data into object headed to router
-        const newMovie ={
+        const newMovie = {
             title: newTitle,
             poster: url,
             description: desc,
             genre_id: genre
         }
         //Sends object to router
-        dispatch({type:'ADD_MOVIE', payload: newMovie});
+        dispatch({ type: 'ADD_MOVIE', payload: newMovie });
         //Returns users to MovieList
         history.push('/');
     }
 
-    return(
+    return (
 
         <div>
             <h2>Add a Movie</h2>
-            <form>
-                <input
-                required
-                placeholder="Movie Title"
-                onChange={(event) => setNewTitle(event.target.value)}/>
-                <input
-                required
-                placeholder="Poster URL" 
-                onChange={(event) => setUrl(event.target.value)}/>
-                <input
-                required
-                placeholder="Description" 
-                onChange={(event) => setDesc(event.target.value)}/>
-                <select onChange={(event) => setGenre(event.target.value)}>
-                    <option id="default">Select Genre</option>
-                    <option id="Adventure" value="1">Adventure</option>
-                    <option id="Animated" value="2">Animated</option>
-                    <option id="Biographical" value="3">Biographical</option>
-                    <option id="Comedy" value="4">Comedy</option>
-                    <option id="Disaster" value="5">Disaster</option>
-                    <option id="Drama" value="6">Drama</option>
-                    <option id="Epic" value="7">Epic</option>
-                    <option id="Fantasy" value="8">Fantasy</option>
-                    <option id="Musical" value="9">Musical</option>
-                    <option id="Romantic" value="10">Romantic</option>
-                    <option id="Science Fiction" value="11">Science Fiction</option>
-                    <option id="Space-Opera" value="12">Space-Opera</option>
-                    <option id="Superhero" value="13">Superhero</option>
-                </select>
-            </form>
+            <FormControl>
+                <TextField
+                    required
+                    onChange={(event) => setNewTitle(event.target.value)}
+                    id="standard-basic"
+                    label="Movie Title" />
+                <TextField
+                    required
+                    onChange={(event) => setUrl(event.target.value)}
+                    id="standard-basic"
+                    label="Poster URL" />
+                <TextField
+                    required
+                    onChange={(event) => setDesc(event.target.value)}
+                    id="standard-basic"
+                    label="Description" />
+
+                <Select onChange={(event) => setGenre(event.target.value)}>
+
+                    <MenuItem id="Adventure" value="1">Adventure</MenuItem>
+                    <MenuItem id="Animated" value="2">Animated</MenuItem>
+                    <MenuItem id="Biographical" value="3">Biographical</MenuItem>
+                    <MenuItem id="Comedy" value="4">Comedy</MenuItem>
+                    <MenuItem id="Disaster" value="5">Disaster</MenuItem>
+                    <MenuItem id="Drama" value="6">Drama</MenuItem>
+                    <MenuItem id="Epic" value="7">Epic</MenuItem>
+                    <MenuItem id="Fantasy" value="8">Fantasy</MenuItem>
+                    <MenuItem id="Musical" value="9">Musical</MenuItem>
+                    <MenuItem id="Romantic" value="10">Romantic</MenuItem>
+                    <MenuItem id="Science Fiction" value="11">Science Fiction</MenuItem>
+                    <MenuItem id="Space-Opera" value="12">Space-Opera</MenuItem>
+                    <MenuItem id="Superhero" value="13">Superhero</MenuItem>
+                </Select>
+            </FormControl>
             <div>
-                <button onClick={()=> history.push('./')}>
+                <h1></h1>
+            </div>
+            <div>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => history.push('./')}>
                     Cancel
-                </button>
-                <button onClick={handleSave}>
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSave}>
                     Save
-                </button>
+                </Button>
             </div>
 
         </div>
