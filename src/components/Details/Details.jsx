@@ -25,7 +25,7 @@ function Details() {
             <h3> Movie Details</h3>
             <div className="poster">
             {/* maps out the returned genres from DB */}
-            <img src={movieInfo.poster} />
+            <img src={movieInfo.poster} width="185" height="274" />
             </div>
 
             <button onClick={goBack}>Back to List</button>
