@@ -14,7 +14,7 @@ function Details() {
     }, []);
 
     const goBack = () => {
-        history.push('./');
+        history.push('/');
     }
 
     console.log('Genres', movieGenres);

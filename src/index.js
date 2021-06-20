@@ -46,7 +46,7 @@ function* fetchGenres (action) {
 function* addMovie (action) {
     try{
         console.log('new movie', action.payload);
-        
+        const response = yield axios.post(`api/movie`, action.payload);
     } catch {
         console.log('addMovie error');
         
